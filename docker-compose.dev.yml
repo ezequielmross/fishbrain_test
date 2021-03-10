@@ -1,0 +1,15 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    ports:
+      - "3306:3306"
+  queue:
+    image: redis
+    ports:
+      - "6379:6379"
