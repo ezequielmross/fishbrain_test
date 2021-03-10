@@ -1,0 +1,4 @@
+/node_modules/
+/public/resized/*.png
+/public/uploads/
+/build/
