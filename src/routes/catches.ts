@@ -6,6 +6,7 @@ import { AnglerCatch } from '../entity'
 import routerValidator from '../middlewares/routerValidator'
 import imageUpload from '../middlewares/imageUpload'
 import joi from 'joi'
+import queue from '../queue'
 
 const router = express.Router()
 
@@ -34,6 +35,8 @@ router.post('/', imageUpload('img'), routerValidator({
     anglerCatch.timestamp  = new Date()
 
     const result = await repo.save(anglerCatch)
+
+    queue.push(req.file.path, result.id.toString())
 
     res.json(result)
   }
