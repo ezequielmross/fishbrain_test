@@ -8,6 +8,7 @@ import helmet     from 'helmet'
 
 /* Controllers */
 import versionRouter from './routes/version'
+import catchesRouter from './routes/catches'
 
 /* Start Server */
 export default () => {
@@ -22,6 +23,7 @@ export default () => {
 
   /* Routes endpoints */
   app.use('/', versionRouter)
+  app.use('/catches/', catchesRouter)
 
   /* Running server */
   const port = 8000
