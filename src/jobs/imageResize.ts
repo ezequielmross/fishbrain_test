@@ -12,6 +12,7 @@ export default async (job: Queue.Job<any>) => {
       .resize(140, 140)
       .png({ quality: 100 })
       .toFile(dest)
+    // Todo: delete file from public/uploads folder
   } catch (error) {
     console.error(error)
     return Promise.reject(error)

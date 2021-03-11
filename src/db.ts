@@ -1,7 +1,6 @@
 import 'reflect-metadata'
 import { createConnection } from 'typeorm'
 import { join } from 'path'
-const entitiesPath = join(__dirname, './entity/**/*.js')
 
 export default () => createConnection({
   type: "mysql",
@@ -11,7 +10,8 @@ export default () => createConnection({
   password: process.env.DB_PASS,
   database: process.env.DB_DATABASE,
   entities: [
-    entitiesPath
+    join(__dirname, './entity/**/*.js'),
+    join(__dirname, './entity/**/*.ts')
   ],
   synchronize: true,
   logging: false

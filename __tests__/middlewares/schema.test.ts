@@ -1,5 +1,4 @@
 import { schemaValidator, RouteSchema } from '../../src/middlewares/schemaValidator'
-import jwt from 'jsonwebtoken'
 import Joi from 'joi'
 import {
   createRequest,
