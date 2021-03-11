@@ -3,8 +3,6 @@ import { createConnection } from 'typeorm'
 import { join } from 'path'
 const entitiesPath = join(__dirname, './entity/**/*.js')
 
-console.debug(entitiesPath)
-
 export default () => createConnection({
   type: "mysql",
   host: process.env.DB_HOST,

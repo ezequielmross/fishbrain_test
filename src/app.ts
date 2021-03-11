@@ -3,9 +3,6 @@ import express    from 'express'
 import cors       from 'cors'
 import helmet     from 'helmet'
 
-/* Middlewares */
-// import authMiddleware from './middlewares/authentication'
-
 /* Controllers */
 import versionRouter from './routes/version'
 import catchesRouter from './routes/catches'

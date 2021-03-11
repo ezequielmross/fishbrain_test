@@ -5,7 +5,7 @@ const router = express.Router()
 router.get('/', (req: Request, res: Response) => {
   res.json({
     'api': 'Test API',
-    'version': '123'
+    'version': '1.0.0'
   })
 })
 
