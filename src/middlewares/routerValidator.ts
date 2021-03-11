@@ -11,8 +11,9 @@ const routerValidator = (router: RouterSchema) => (req: Request, res: Response) 
     try {
       await router.controller(req, res)
     } catch (error) {
+      console.error(error)
       res.status(500).json({
-        error: error
+        error: 'Internal error'
       })
     }
   })
