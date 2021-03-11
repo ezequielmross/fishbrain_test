@@ -1,13 +1,14 @@
 import multer from 'multer'
 import { extname } from 'path'
-import { Request, Response } from 'express'
+import { Request, Response, NextFunction } from 'express'
 
 // Create a multer parse for image upload
 const parser = multer({
   dest: 'public/uploads/',
   fileFilter: (req, file, cb) => {
     const ext = extname(file.originalname)
-    if (ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
+    const allowedTypes = ['.png', '.jpg', '.gif', '.jpeg']
+    if (allowedTypes.includes(ext)) {
       return cb(new Error('Only images are allowed'))
     }
     cb(null, true)
@@ -16,6 +17,7 @@ const parser = multer({
 })
 
 export default (fieldName: string) => (req: Request, res: Response, next: Function) => {
+  // Creates multer middleware
   const upload = parser.single(fieldName)
 
   // Only allows multipart/form-data request
@@ -24,6 +26,7 @@ export default (fieldName: string) => (req: Request, res: Response, next: Functi
     return res.status(500).json({ error: 'Request must be a multipart/form-data' })
   }
 
+  // Prevent Multer errors
   upload(req, res, (err: any) => {
     // A Multer error occurred when uploading.
     if (err instanceof multer.MulterError) {

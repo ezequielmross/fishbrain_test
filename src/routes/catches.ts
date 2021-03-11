@@ -10,6 +10,7 @@ import queue from '../queue'
 
 const router = express.Router()
 
+// Create an angler catch
 router.post('/', imageUpload('img'), routerValidator({
   request: {
     body: joi.object({
@@ -42,6 +43,7 @@ router.post('/', imageUpload('img'), routerValidator({
   }
 }))
 
+// List all catches ordered by date
 router.get('/', async (req: Request, res: Response) => {
   const repo = getRepository(AnglerCatch)
 
@@ -54,6 +56,7 @@ router.get('/', async (req: Request, res: Response) => {
   res.json(catches)
 })
 
+// Get a catch resized photo
 router.get('/:id/resized-photo', async (req: Request, res: Response) => {
   const filePath = join(__dirname, '../../', 'public', 'resized', `${req.params.id}.png`)
   const exist = await new Promise((resolve, reject) => access(filePath, err => {
